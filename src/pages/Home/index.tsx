@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
 import Banner from '../../components/Banner'
 import ProductsList from '../../components/ProductsList'
+
+import { useGetActionGamesQuery, useGetSoonQuery } from '../../services/api'
 
 export interface GalleryItem {
   type: 'image' | 'video'
@@ -32,26 +33,30 @@ export type Game = {
 }
 
 const Home = () => {
-  const [promocoes, setPromocoes] = useState<Game[]>([])
-  const [emBreve, setEmBreve] = useState<Game[]>([])
+  const { data: onSaleGames } = useGetActionGamesQuery()
+  const { data: soonGames } = useGetSoonQuery()
 
-  useEffect(() => {
-    fetch('https://ebac-fake-api.vercel.app/api/eplay/promocoes')
-      .then((res) => res.json())
-      .then((res) => setPromocoes(res))
+  if (onSaleGames && soonGames) {
+    return (
+      <>
+        <Banner />
+        <ProductsList
+          title="Promoções"
+          games={onSaleGames}
+          background="gray"
+          id="on-sale"
+        />
+        <ProductsList
+          title="Em breve"
+          games={soonGames}
+          background="black"
+          id="coming-soon"
+        />
+      </>
+    )
+  }
 
-    fetch('https://ebac-fake-api.vercel.app/api/eplay/em-breve')
-      .then((res) => res.json())
-      .then((res) => setEmBreve(res))
-  }, [])
-
-  return (
-    <>
-      <Banner />
-      <ProductsList title="Promoções" games={promocoes} background="gray" />
-      <ProductsList title="Em breve" games={emBreve} background="black" />
-    </>
-  )
+  return <h4>Carregando</h4>
 }
 
 export default Home
