@@ -3,7 +3,7 @@ import { colors } from '../../styles'
 import { TagContainer } from '../Tag/styles'
 import { ButtonContainer } from '../Button/styles'
 
-import fechar from '../../assets/images/fechar.png'
+import closeIcon from '../../assets/images/fechar.png'
 
 export const Overlay = styled.div`
   position: absolute;
@@ -41,6 +41,13 @@ export const Sidebar = styled.aside`
     max-width: 100%;
     width: 100%;
   }
+
+  .empty-text {
+    font-size: 14px;
+    line-height: 22px;
+    color: ${colors.white};
+    text-align: center;
+  }
 `
 
 export const Prices = styled.p`
@@ -52,7 +59,7 @@ export const Prices = styled.p`
   span {
     display: block;
     font-size: 12px;
-    color: ${colors.grayClaro};
+    color: ${colors.lightGray};
   }
 `
 
@@ -66,7 +73,7 @@ export const Quantity = styled.p`
 
 export const CartItem = styled.li`
   display: flex;
-  border-bottom: 1px solid ${colors.grayClaro};
+  border-bottom: 1px solid ${colors.lightGray};
   padding: 8px 0;
   position: relative;
 
@@ -97,7 +104,7 @@ export const CartItem = styled.li`
   }
 
   button {
-    background-image: url(${fechar});
+    background-image: url(${closeIcon});
     width: 16px;
     height: 16px;
     border: none;

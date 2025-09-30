@@ -4,13 +4,12 @@ import { HashLink } from 'react-router-hash-link'
 import * as S from './styles'
 
 import logo from '../../assets/images/logo.svg'
-import carrinho from '../../assets/images/carrinho.svg'
+import cartIcon from '../../assets/images/carrinho.svg'
 
 import { open } from '../../store/reducers/cart'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
 import { useState } from 'react'
-import { LinkItem } from './styles'
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -31,7 +30,9 @@ const Header = () => {
             <span />
           </S.Hamburguer>
           <Link to="/">
-            <img src={logo} alt="Eplay Logo" />
+            <h1>
+              <img src={logo} alt="EPLAY" />
+            </h1>
           </Link>
           <nav>
             <S.Links>
@@ -45,10 +46,10 @@ const Header = () => {
               </S.LinkItem>
               <S.LinkItem>
                 <HashLink
-                  title="Clique aqui para acessar a sção em breve"
+                  title="Clique aqui para acessar a seção de em breve"
                   to="/#coming-soon"
                 >
-                  Em Breve
+                  Em breve
                 </HashLink>
               </S.LinkItem>
               <S.LinkItem>
@@ -62,10 +63,10 @@ const Header = () => {
             </S.Links>
           </nav>
         </div>
-        <S.CartButton onClick={openCart}>
+        <S.CartButton role="button" onClick={openCart}>
           {items.length}
           <span> - produto(s)</span>
-          <img src={carrinho} alt="Carrinho de Compras" />
+          <img src={cartIcon} alt="Carrinho" />
         </S.CartButton>
       </S.HeaderRow>
       <S.NavMobile className={isMenuOpen ? 'is-open' : ''}>
@@ -81,11 +82,11 @@ const Header = () => {
           </S.LinkItem>
           <S.LinkItem>
             <HashLink
-              title="Clique aqui para acessar a sção em breve"
+              title="Clique aqui para acessar a seção de em breve"
               to="/#coming-soon"
               onClick={() => setIsMenuOpen(false)}
             >
-              Em Breve
+              Em breve
             </HashLink>
           </S.LinkItem>
           <S.LinkItem>
